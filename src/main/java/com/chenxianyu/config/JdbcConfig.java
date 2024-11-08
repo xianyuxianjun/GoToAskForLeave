@@ -6,6 +6,9 @@ import org.springframework.context.annotation.Configuration;
 
 import javax.sql.DataSource;
 
+/**
+ * 数据库配置
+ */
 @Configuration
 public class JdbcConfig {
     private final String driverClassName = "com.mysql.cj.jdbc.Driver";

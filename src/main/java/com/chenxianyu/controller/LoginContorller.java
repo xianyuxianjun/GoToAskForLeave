@@ -15,6 +15,6 @@ public class LoginContorller {
     @ResponseBody
     @PostMapping("/login")
     public Reslut login(@RequestBody LoginDto loginDto){
-        return Reslut.error("asdasd");
+        return loginService.login(loginDto);
     }
 }
