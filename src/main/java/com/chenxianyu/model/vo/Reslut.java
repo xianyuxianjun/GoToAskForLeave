@@ -1,25 +1,28 @@
 package com.chenxianyu.model.vo;
 
-public class Reslut<T> {
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+public class Reslut {
     private final int code;
     private final String message;
-    private final T data;
+    private final Object data;
 
-    public Reslut(int code, String message, T data) {
+    public Reslut(int code, String message, Object data) {
         this.code = code;
         this.message = message;
         this.data = data;
     }
 
-    public static <T>Reslut<T> succeed(){
-        return new Reslut<>(1,"succeed",null);
+    public static Reslut succeed(){
+        ObjectMapper objectMapper = new ObjectMapper();
+        return new Reslut(1,"succeed",null);
     }
 
-    public static <T>Reslut<T> succeed(T data){
-        return new Reslut<>(1,"succeed",data);
+    public static Reslut succeed(Object data){
+        return new Reslut(1,"succeed",data);
     }
 
-    public static <T>Reslut<T> error(String message){
-        return new Reslut<>(0,message,null);
+    public static Reslut error(String message){
+        return new Reslut(0,message,null);
     }
 }
