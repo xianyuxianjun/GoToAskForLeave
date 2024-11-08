@@ -13,7 +13,7 @@ public class LoginContorller {
     @Autowired
     private LoginService loginService;
     @ResponseBody
-    @PostMapping(value = "/login")
+    @PostMapping("/login")
     public Reslut login(@RequestBody LoginDto loginDto){
         return Reslut.error("asdasd");
     }

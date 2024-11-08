@@ -13,7 +13,7 @@ import javax.sql.DataSource;
 @org.springframework.context.annotation.Configuration
 public class MybatisConfig {
 
-    // 配置MybatisPlus
+    // 配置Mybatis
     @Bean
     public SqlSessionFactoryBean sqlSessionFactory(DataSource dataSource) {
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
@@ -28,6 +28,7 @@ public class MybatisConfig {
         return sqlSessionFactoryBean;
     }
 
+    // 配置mapper包扫描路径
     @Bean
     public MapperScannerConfigurer mapperScannerConfigurer() {
         MapperScannerConfigurer mapperScannerConfigurer = new MapperScannerConfigurer();

@@ -19,10 +19,11 @@ import java.util.List;
 @ComponentScan("com.chenxianyu")
 @Configuration
 public class SpringMvcConfig implements WebMvcConfigurer {
+    //配置Json响应格式
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
         FastJsonHttpMessageConverter converter = new FastJsonHttpMessageConverter();
-        //自定义配置...
+        //自定义配置
         FastJsonConfig config = new FastJsonConfig();
         config.setDateFormat("yyyy-MM-dd HH:mm:ss");
         config.setReaderFeatures(JSONReader.Feature.FieldBased, JSONReader.Feature.SupportArrayToBean);

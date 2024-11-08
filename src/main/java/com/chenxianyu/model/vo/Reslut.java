@@ -1,7 +1,8 @@
 package com.chenxianyu.model.vo;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.Data;
 
+@Data
 public class Reslut {
     private final int code;
     private final String message;
@@ -12,9 +13,7 @@ public class Reslut {
         this.message = message;
         this.data = data;
     }
-
     public static Reslut succeed(){
-        ObjectMapper objectMapper = new ObjectMapper();
         return new Reslut(1,"succeed",null);
     }
 
