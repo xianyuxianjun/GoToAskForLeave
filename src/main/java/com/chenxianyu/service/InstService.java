@@ -31,6 +31,8 @@ public class InstService {
         for (String classId : classIdList) {
             studentList.add(classesMapper.selectStudentByClassId(classId));
         }
+        System.out.println("asdasdasdasdsad");
+        System.out.println(studentList);
         return Reslut.succeed(studentList);
     }
 }

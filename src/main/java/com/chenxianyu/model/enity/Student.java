@@ -5,6 +5,7 @@ import lombok.Data;
 @Data
 public class Student {
     private String stuId;
+    private String instId;
     private String classId;
     private String stuName;
     private String email;

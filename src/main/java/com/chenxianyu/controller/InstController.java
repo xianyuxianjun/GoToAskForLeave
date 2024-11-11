@@ -1,15 +1,11 @@
 package com.chenxianyu.controller;
-
-import com.chenxianyu.mapper.InsrtructorMapper;
 import com.chenxianyu.model.enity.Insrtructor;
 import com.chenxianyu.model.vo.Reslut;
 import com.chenxianyu.service.InstService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/inst")
 public class InstController {
@@ -21,6 +17,7 @@ public class InstController {
      * @param inst
      * @return
      */
+    @PostMapping("getClassStudent")
     public Reslut getAllStudentByInstId(@RequestBody Insrtructor inst){
         return instService.selectAllStudentByInstId(inst);
     }
