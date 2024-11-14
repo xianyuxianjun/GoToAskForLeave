@@ -21,4 +21,9 @@ public class InstController {
     public Reslut getAllStudentByInstId(@RequestBody Insrtructor inst){
         return instService.selectAllStudentByInstId(inst);
     }
+
+    @PostMapping("/getLeaveList")
+    public Reslut getLeaveList(@RequestBody Insrtructor insrtructor){
+        return instService.getLeaveList(insrtructor);
+    }
 }
