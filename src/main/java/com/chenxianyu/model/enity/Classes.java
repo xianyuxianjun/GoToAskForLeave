@@ -10,4 +10,5 @@ public class Classes {
     private String depId;
     private String major;
     private String grade;
+
 }
