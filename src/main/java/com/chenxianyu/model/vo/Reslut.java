@@ -4,9 +4,9 @@ import lombok.Data;
 
 @Data
 public class Reslut {
-    private final int code;
-    private final String message;
-    private final Object data;
+    private  int code;
+    private  String message;
+    private  Object data;
 
     public Reslut(int code, String message, Object data) {
         this.code = code;

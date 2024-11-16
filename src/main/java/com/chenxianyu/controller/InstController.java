@@ -13,7 +13,7 @@ public class InstController {
     private InstService instService;
 
     /**
-     * 根据辅导员的id查询属于他的学生
+     * 辅导员查询所管理的学生信息
      * @param inst
      * @return
      */
@@ -22,6 +22,11 @@ public class InstController {
         return instService.selectAllStudentByInstId(inst);
     }
 
+    /**
+     * 辅导员查询所管理的请假信息
+     * @param insrtructor
+     * @return
+     */
     @PostMapping("/getLeaveList")
     public Reslut getLeaveList(@RequestBody Insrtructor insrtructor){
         return instService.getLeaveList(insrtructor);

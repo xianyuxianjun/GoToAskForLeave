@@ -9,4 +9,5 @@ public class User {
     private String email;
     private String password;
     private String telephone;
+    private String role;
 }

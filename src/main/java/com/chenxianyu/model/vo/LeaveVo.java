@@ -23,5 +23,7 @@ public class LeaveVo {
     //请假状态
     private String status;
     //提交时间
-    private Date audittime;
+    private String audittime;
+    //审批意见
+    private String opinion;
 }

@@ -10,5 +10,7 @@ public class Insrtructor {
     private String depId;
     private String telephone;
     private String password;
+    private String role;
+    private String email;
 
 }

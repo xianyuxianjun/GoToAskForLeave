@@ -2,7 +2,7 @@ package com.chenxianyu.model.enity;
 
 import lombok.Data;
 
-import java.util.Date;
+import java.sql.Date;
 
 @Data
 public class Leave {
@@ -21,7 +21,7 @@ public class Leave {
     //请假状态
     private String status;
     //提交时间
-    private Date audittime;
-    //审批时间
+    private String audittime;
+    //审批意见
     private String opinion;
 }
