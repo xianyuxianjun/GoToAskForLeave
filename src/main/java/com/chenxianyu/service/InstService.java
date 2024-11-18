@@ -7,6 +7,7 @@ import com.chenxianyu.model.enity.Classes;
 import com.chenxianyu.model.enity.Insrtructor;
 import com.chenxianyu.model.enity.Leave;
 import com.chenxianyu.model.enity.Student;
+import com.chenxianyu.model.vo.ClassVo;
 import com.chenxianyu.model.vo.LeaveVo;
 import com.chenxianyu.model.vo.Reslut;
 import com.chenxianyu.model.vo.StudentVo;
@@ -109,5 +110,17 @@ public class InstService {
         studentVo.setContact(student.getContact());
         studentVo.setStuId(student.getStuId());
         return studentVo;
+    }
+
+    public Reslut getClassList(Insrtructor insrtructor) {
+        List<Classes> classesList = classesMapper.selectClassByInstId(insrtructor);
+        List<ClassVo> classVoList = new ArrayList<>();
+        for (Classes classes : classesList) {
+            ClassVo classVo = new ClassVo();
+            classVo.setTitle(classes.getClassName());
+            classVo.setValue(classes.getClassId());
+            classVoList.add(classVo);
+        }
+        return Reslut.succeed(classVoList);
     }
 }

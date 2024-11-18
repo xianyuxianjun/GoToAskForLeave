@@ -20,8 +20,11 @@ public interface CourseMapper {
     List<Course> selectAllCourse();
 
     @Delete("delete from sys_course where course_id=#{id}")
-    void delectCourseById(String id);
+    int delectCourseById(String id);
 
-    @Insert("insert into sys_course (course_id, class_id, course_name, year, term, hour) VALUES (#{courseId},#{classId},#{courseName},#{yaer},#{term},#{hour})")
-    void addCourse(Course course);
+    @Insert("insert into sys_course (course_id, class_id, course_name, year, term, hour) VALUES (#{courseId},#{classId},#{courseName},#{year},#{term},#{hour})")
+    int addCourse(Course course);
+
+    @Select("select * from sys_course where class_id =#{classId}")
+    List<Course> selectCourseByClassId(String classId);
 }

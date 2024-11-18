@@ -31,4 +31,9 @@ public class InstController {
     public Reslut getLeaveList(@RequestBody Insrtructor insrtructor){
         return instService.getLeaveList(insrtructor);
     }
+
+    @PostMapping("/classList")
+    public Reslut getClassList(@RequestBody Insrtructor insrtructor){
+        return instService.getClassList(insrtructor);
+    }
 }

@@ -29,4 +29,7 @@ public interface StudentMapper {
 
     @Select("select class_name from sys_classes where class_id=#{classId}")
     String selectClassNamebyClassId(String classId);
+
+    @Select("select * from sys_student where class_id=#{classId}")
+    List<Student> selectStudentByClassId(String classId);
 }

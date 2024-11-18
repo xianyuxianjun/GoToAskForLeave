@@ -10,4 +10,7 @@ import java.util.List;
 public interface DepMapper {
     @Select("select * from sys_department")
     List<Department> selectAllDep();
+
+    @Select("select * from sys_department where dep_id=#{id}")
+    Department selectDepById(String id);
 }
