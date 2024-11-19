@@ -1,10 +1,7 @@
 package com.chenxianyu.mapper;
 
 import com.chenxianyu.model.enity.Course;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -27,4 +24,7 @@ public interface CourseMapper {
 
     @Select("select * from sys_course where class_id =#{classId}")
     List<Course> selectCourseByClassId(String classId);
+
+    @Update("update sys_course set class_id=#{classId}, course_name=#{courseName}, year=#{year}, term=#{term}, hour=#{hour} where course_id=#{courseId}")
+    int updateCourse(Course course);
 }

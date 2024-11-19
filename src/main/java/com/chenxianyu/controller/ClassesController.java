@@ -37,4 +37,14 @@ public class ClassesController {
         return classesService.getClassByInstId(insrtructor);
     }
 
+    @PostMapping("/updateClasses")
+    public Reslut updateClasses(@RequestBody Classes classes){
+        return classesService.updateClasses(classes);
+    }
+
+    @PostMapping("/delectClasses")
+    public Reslut delectClasses(@RequestBody Classes classes){
+        return classesService.delectClasses(classes);
+    }
+
 }

@@ -1,6 +1,4 @@
 package com.chenxianyu.service;
-
-import com.chenxianyu.controller.InstController;
 import com.chenxianyu.mapper.ClassesMapper;
 import com.chenxianyu.mapper.DepMapper;
 import com.chenxianyu.mapper.StudentMapper;
@@ -54,5 +52,21 @@ public class ClassesService {
             classesVos.add(vo);
         }
         return Reslut.succeed(classesVos);
+    }
+
+    public Reslut updateClasses(Classes classes) {
+        int o = classesMapper.updateClasses(classes);
+        if (o == 1){
+            return Reslut.succeed();
+        }
+        return Reslut.error("修改失败");
+    }
+
+    public Reslut delectClasses(Classes classes) {
+        int i = classesMapper.delectClass(classes.getClassId());
+        if (i == 1){
+            return Reslut.succeed();
+        }
+        return Reslut.error("删除失败");
     }
 }

@@ -30,4 +30,9 @@ public class CourseController {
     public Reslut delectCourse(@RequestBody Course course){
         return courseService.delectCourse(course);
     }
+
+    @PostMapping("/updateCourse")
+    public Reslut updateCourse(@RequestBody Course course){
+        return courseService.updateCourse(course);
+    }
 }

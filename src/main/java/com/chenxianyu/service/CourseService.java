@@ -61,4 +61,13 @@ public class CourseService {
         }
         return Reslut.error("删除失败");
     }
+
+    public Reslut updateCourse(Course course) {
+        int i = courseMapper.updateCourse(course);
+        if (i == 1){
+            return Reslut.succeed();
+        }else{
+            return Reslut.error("更新失败");
+        }
+    }
 }

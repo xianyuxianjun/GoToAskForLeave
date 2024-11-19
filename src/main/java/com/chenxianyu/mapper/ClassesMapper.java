@@ -3,10 +3,7 @@ package com.chenxianyu.mapper;
 import com.chenxianyu.model.enity.Classes;
 import com.chenxianyu.model.enity.Insrtructor;
 import com.chenxianyu.model.enity.Student;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -26,4 +23,7 @@ public interface ClassesMapper {
 
     @Delete("delete from sys_classes where class_id=#{classId}")
     int delectClass(String classId);
+
+    @Update("update sys_classes set class_name=#{className}, dep_id=#{depId}, major=#{major}, grade=#{grade} where class_id=#{classId}")
+    int updateClasses(Classes classes);
 }
