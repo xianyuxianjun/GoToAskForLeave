@@ -14,7 +14,7 @@ public class LoginContorller {
     private LoginService loginService;
     @ResponseBody
     @PostMapping("/login")
-    public Reslut login(){
-        return Reslut.succeed();
+    public Reslut login(@RequestBody LoginDto loginDto){
+        return loginService.login(loginDto);
     }
 }

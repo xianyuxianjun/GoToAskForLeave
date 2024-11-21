@@ -1,5 +1,6 @@
 package com.chenxianyu.mapper;
 
+import com.chenxianyu.model.dto.LoginDto;
 import com.chenxianyu.model.enity.Student;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
@@ -32,4 +33,10 @@ public interface StudentMapper {
 
     @Select("select * from sys_student where class_id=#{classId}")
     List<Student> selectStudentByClassId(String classId);
+
+    @Select("select * from sys_student where email = #{username}")
+    Student selectStudentByEmail(LoginDto loginDto);
+
+    @Insert("insert into sys_student (stu_id,sex,password, role, email,stu_name) values (#{stuId},#{sex},#{password},#{role},#{email},#{stuName})")
+    int insterStudent(Student student);
 }

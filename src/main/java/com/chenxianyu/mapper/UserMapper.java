@@ -1,5 +1,6 @@
 package com.chenxianyu.mapper;
 
+import com.chenxianyu.model.dto.LoginDto;
 import com.chenxianyu.model.enity.User;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
@@ -17,8 +18,11 @@ public interface UserMapper {
     User selectUserById(String id);
 
     @Insert("insert into sys_user (userid, fullname, password, telephone, emali,role) VALUES (#{userId},#{fullName},#{passord},#{telephpne},#{email},#{role})")
-    void addUser(User user);
+    int addUser(User user);
 
     @Delete("delete from sys_user where userid=#{id}")
     void delectUserById(String id);
+
+    @Select("select * from sys_user where emali=#{username}")
+    User selectUserByEmail(LoginDto loginDto);
 }
