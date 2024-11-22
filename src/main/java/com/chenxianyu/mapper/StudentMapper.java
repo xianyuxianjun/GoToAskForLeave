@@ -18,7 +18,7 @@ public interface StudentMapper {
     int deleteStudentById(String id);
 
     @Insert("insert into sys_student (stu_id, class_id, stu_name, sex, address, stu_tel, contact, contact_tel, password, role, email) VALUES (#{stuId},#{classId},#{stuName},#{sex},#{address},#{stuTel},#{contact},#{contactTel},#{password},#{role},#{email})")
-    void addStudent(Student student);
+    int addStudent(Student student);
 
     @Select("select * from sys_student where stu_id=#{Id}")
     Student selectStudentByStuId(String Id);

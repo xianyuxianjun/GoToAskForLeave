@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin 
 @RestController
 @RequestMapping("/student")
-public class StudebtController {
+public class StudentController {
     @Autowired
     private StudentService studentService;
 
@@ -21,5 +21,10 @@ public class StudebtController {
     @PostMapping("/getStudentByClassId")
     public Reslut getStudentByClassId(@RequestBody Student student){
         return studentService.getStudentByClassId(student);
+    }
+
+    @PostMapping("/addStudent")
+    public Reslut addStudent(@RequestBody Student student){
+        return studentService.addStudent(student);
     }
 }
