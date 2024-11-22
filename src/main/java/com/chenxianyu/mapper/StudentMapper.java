@@ -6,8 +6,6 @@ import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
-import org.mybatis.spring.annotation.MapperScan;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
@@ -17,7 +15,7 @@ public interface StudentMapper {
     List<Student> selectAllStudent();
 
     @Delete("delete from sys_student where stu_id=#{id}")
-    void deleteStudentById(String id);
+    int deleteStudentById(String id);
 
     @Insert("insert into sys_student (stu_id, class_id, stu_name, sex, address, stu_tel, contact, contact_tel, password, role, email) VALUES (#{stuId},#{classId},#{stuName},#{sex},#{address},#{stuTel},#{contact},#{contactTel},#{password},#{role},#{email})")
     void addStudent(Student student);
