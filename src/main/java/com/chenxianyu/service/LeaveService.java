@@ -1,8 +1,10 @@
 package com.chenxianyu.service;
 
+import com.chenxianyu.mapper.ClassesMapper;
 import com.chenxianyu.mapper.CourseMapper;
 import com.chenxianyu.mapper.LeaveMapper;
 import com.chenxianyu.mapper.StudentMapper;
+import com.chenxianyu.model.enity.Classes;
 import com.chenxianyu.model.enity.Course;
 import com.chenxianyu.model.enity.Leave;
 import com.chenxianyu.model.enity.Student;
@@ -18,8 +20,12 @@ import java.util.Random;
 public class LeaveService {
     @Autowired
     private LeaveMapper leaveMapper;
+    @Autowired
     private CourseMapper courseMapper;
+    @Autowired
     private StudentMapper studentMapper;
+    @Autowired
+    private ClassesMapper classesMapper;
 
     public Reslut updateLeave(LeaveVo leaveVo) {
         leaveMapper.updateLeave(leaveVo);
@@ -59,7 +65,8 @@ public class LeaveService {
         long l = random.nextLong();
         leave.setLeaveId(String.valueOf(l));
         Student student = studentMapper.selectStudentByStuId(leave.getStuId());
-        leave.setInstId(student.getInstId());
+        Classes classes = classesMapper.selectClassByClassId(student.getClassId());
+        leave.setInstId(classes.getInstId());
         leave.setStatus("未审核");
         leave.setOpinion("无");
         int i = leaveMapper.addLeave(leave);
