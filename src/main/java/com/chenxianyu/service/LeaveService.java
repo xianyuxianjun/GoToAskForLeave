@@ -3,11 +3,16 @@ package com.chenxianyu.service;
 import com.chenxianyu.mapper.CourseMapper;
 import com.chenxianyu.mapper.LeaveMapper;
 import com.chenxianyu.mapper.StudentMapper;
+import com.chenxianyu.model.enity.Course;
 import com.chenxianyu.model.enity.Leave;
+import com.chenxianyu.model.enity.Student;
 import com.chenxianyu.model.vo.LeaveVo;
 import com.chenxianyu.model.vo.Reslut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Random;
 
 @Service
 public class LeaveService {
@@ -34,5 +39,33 @@ public class LeaveService {
         leave.setCourseId(courseMapper.selectCourseByCourseName(leaveVo.getCourseName()).getCourseId());
         leave.setInstId(studentMapper.selectStudentByStuId(leaveVo.getStuId()).getInstId());
         return leave;
+    }
+
+    public Reslut delectLeave(Leave leave) {
+        int i = leaveMapper.delectLeaveById(leave.getLeaveId());
+        if (i>0){
+            return Reslut.succeed();
+        }
+        return Reslut.error("删除失败");
+    }
+
+    public Reslut getLeaveByStuId(Student student) {
+        List<Leave> leaves = leaveMapper.selectLeaveByStuId(student.getStuId());
+        return Reslut.succeed(leaves);
+    }
+
+    public Reslut addLeave(Leave leave) {
+        Random random = new Random();
+        long l = random.nextLong();
+        leave.setLeaveId(String.valueOf(l));
+        Student student = studentMapper.selectStudentByStuId(leave.getStuId());
+        leave.setInstId(student.getInstId());
+        leave.setStatus("未审核");
+        leave.setOpinion("无");
+        int i = leaveMapper.addLeave(leave);
+        if (i>0){
+            return Reslut.succeed();
+        }
+        return Reslut.error("提交失败");
     }
 }

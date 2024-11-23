@@ -3,11 +3,14 @@ package com.chenxianyu.service;
 import com.chenxianyu.mapper.ClassesMapper;
 import com.chenxianyu.mapper.CourseMapper;
 import com.chenxianyu.mapper.InsrtructorMapper;
+import com.chenxianyu.mapper.StudentMapper;
 import com.chenxianyu.model.enity.Classes;
 import com.chenxianyu.model.enity.Course;
 import com.chenxianyu.model.enity.Insrtructor;
+import com.chenxianyu.model.enity.Student;
 import com.chenxianyu.model.vo.ClassVo;
 import com.chenxianyu.model.vo.CourseVo;
+import com.chenxianyu.model.vo.MyCourseVo;
 import com.chenxianyu.model.vo.Reslut;
 import com.chenxianyu.utils.ObjectCopier;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +29,9 @@ public class CourseService {
     private ClassesMapper classesMapper;
     @Autowired
     private InsrtructorMapper insrtructorMapper;
+    @Autowired
+    private StudentMapper studentMapper;
+
     public  Reslut addCourse(Course course) {
         Random random = new Random();
         long l = random.nextLong();
@@ -69,5 +75,18 @@ public class CourseService {
         }else{
             return Reslut.error("更新失败");
         }
+    }
+
+    public Reslut getCourse(Student student) {
+        Student student1 = studentMapper.selectStudentByStuId(student.getStuId());
+        List<Course> courseList = courseMapper.selectCourseByClassId(student1.getClassId());
+        List<MyCourseVo> myCourseVos = new ArrayList<>();
+        for (Course course : courseList) {
+            MyCourseVo myCourseVo = new MyCourseVo();
+            myCourseVo.setTitle(course.getCourseName());
+            myCourseVo.setValue(course.getCourseId());
+            myCourseVos.add(myCourseVo);
+        }
+        return Reslut.succeed(myCourseVos);
     }
 }

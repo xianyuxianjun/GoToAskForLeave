@@ -2,6 +2,7 @@ package com.chenxianyu.controller;
 
 import com.chenxianyu.model.enity.Course;
 import com.chenxianyu.model.enity.Insrtructor;
+import com.chenxianyu.model.enity.Student;
 import com.chenxianyu.model.vo.Reslut;
 import com.chenxianyu.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,5 +35,10 @@ public class CourseController {
     @PostMapping("/updateCourse")
     public Reslut updateCourse(@RequestBody Course course){
         return courseService.updateCourse(course);
+    }
+
+    @PostMapping("/getCourse")
+    public Reslut getCourse(@RequestBody Student student){
+        return courseService.getCourse(student);
     }
 }
