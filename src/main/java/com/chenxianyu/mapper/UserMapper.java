@@ -17,7 +17,7 @@ public interface UserMapper {
     @Select("select * from sys_user where userid=#{id}")
     User selectUserById(String id);
 
-    @Insert("insert into sys_user (userid, fullname, password, telephone, emali,role) VALUES (#{userId},#{fullName},#{passord},#{telephpne},#{email},#{role})")
+    @Insert("insert into sys_user (userid, fullname, password, telephone, emali,role) VALUES (#{userId},#{fullname},#{password},#{telephone},#{email},#{role})")
     int addUser(User user);
 
     @Delete("delete from sys_user where userid=#{id}")

@@ -24,4 +24,5 @@ public class Leave {
     private String audittime;
     //审批意见
     private String opinion;
+    private String courseName;
 }

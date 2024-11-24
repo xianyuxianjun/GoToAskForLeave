@@ -15,7 +15,7 @@ public interface InsrtructorMapper {
     Insrtructor selectInstByInstId(String userId);
 
     @Delete("delete from sys_instructor where inst_id=#{id}")
-    void delectInstByid(String id);
+    int delectInstByid(String id);
 
     @Select("select * from sys_instructor")
     List<Insrtructor> selectAllInst();

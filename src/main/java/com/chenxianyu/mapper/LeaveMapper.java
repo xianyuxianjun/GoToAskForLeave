@@ -14,7 +14,7 @@ public interface LeaveMapper {
     @Select("select * from sys_leave")
     List<Leave> selectAllLeave();
 
-    @Delete("delete from sys_leave where leave_id+#{id}")
+    @Delete("delete from sys_leave where leave_id = #{id}")
     int delectLeaveById(String id);
 
     @Select("select * from sys_leave where inst_id =#{instId}")

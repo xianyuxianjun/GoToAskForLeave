@@ -57,6 +57,10 @@ public class LeaveService {
 
     public Reslut getLeaveByStuId(Student student) {
         List<Leave> leaves = leaveMapper.selectLeaveByStuId(student.getStuId());
+        for (Leave leaf : leaves) {
+            Course course = courseMapper.selectCourseById(leaf.getCourseId());
+            leaf.setCourseName(course.getCourseName());
+        }
         return Reslut.succeed(leaves);
     }
 
@@ -67,7 +71,7 @@ public class LeaveService {
         Student student = studentMapper.selectStudentByStuId(leave.getStuId());
         Classes classes = classesMapper.selectClassByClassId(student.getClassId());
         leave.setInstId(classes.getInstId());
-        leave.setStatus("未审核");
+        leave.setStatus("未审批");
         leave.setOpinion("无");
         int i = leaveMapper.addLeave(leave);
         if (i>0){

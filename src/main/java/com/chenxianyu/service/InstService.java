@@ -1,21 +1,18 @@
 package com.chenxianyu.service;
 
-import com.chenxianyu.mapper.ClassesMapper;
-import com.chenxianyu.mapper.LeaveMapper;
-import com.chenxianyu.mapper.StudentMapper;
-import com.chenxianyu.model.enity.Classes;
-import com.chenxianyu.model.enity.Insrtructor;
-import com.chenxianyu.model.enity.Leave;
-import com.chenxianyu.model.enity.Student;
+import com.chenxianyu.mapper.*;
+import com.chenxianyu.model.enity.*;
 import com.chenxianyu.model.vo.ClassVo;
 import com.chenxianyu.model.vo.LeaveVo;
 import com.chenxianyu.model.vo.Reslut;
 import com.chenxianyu.model.vo.StudentVo;
+import com.chenxianyu.utils.MD5Encryptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Service
 public class InstService {
@@ -25,7 +22,10 @@ public class InstService {
     private LeaveMapper leaveMapper;
     @Autowired
     private StudentMapper studentMapper;
-
+    @Autowired
+    private InsrtructorMapper insrtructorMapper;
+    @Autowired
+    private DepMapper depMapper;
     /**
      * 查询辅导员的全部学生
      * @param inst
@@ -122,5 +122,35 @@ public class InstService {
             classVoList.add(classVo);
         }
         return Reslut.succeed(classVoList);
+    }
+
+    public Reslut getAllInst() {
+        List<Insrtructor> insrtructors = insrtructorMapper.selectAllInst();
+        for (Insrtructor insrtructor : insrtructors) {
+            Department department = depMapper.selectDepById(insrtructor.getDepId());
+            insrtructor.setDepName(department.getDepName());
+        }
+        return Reslut.succeed(insrtructors);
+    }
+
+    public Reslut delecyInst(Insrtructor insrtructor) {
+        int i =insrtructorMapper.delectInstByid(insrtructor.getInstId());
+        if (i>0){
+            return Reslut.succeed();
+        }
+        return Reslut.error("删除失败");
+    }
+
+    public Reslut addInst(Insrtructor insrtructor) {
+        Random random = new Random();
+        long l = random.nextLong();
+        insrtructor.setRole("辅导员");
+        insrtructor.setInstId(String.valueOf(l));
+        insrtructor.setPassword(MD5Encryptor.encryptToMD5("123456"));
+        int i = insrtructorMapper.addInst(insrtructor);
+        if (i>1){
+            return Reslut.succeed();
+        }
+        return Reslut.error("添加失败");
     }
 }

@@ -36,4 +36,19 @@ public class InstController {
     public Reslut getClassList(@RequestBody Insrtructor insrtructor){
         return instService.getClassList(insrtructor);
     }
+
+    @PostMapping("/getAllInst")
+    public Reslut getAllInst(){
+        return instService.getAllInst();
+    }
+
+    @PostMapping("/delectInst")
+    public Reslut delectInst(@RequestBody Insrtructor insrtructor){
+        return instService.delecyInst(insrtructor);
+    }
+
+    @PostMapping("/addInst")
+    public Reslut addInst(@RequestBody Insrtructor insrtructor){
+        return instService.addInst(insrtructor);
+    }
 }

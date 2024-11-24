@@ -37,6 +37,7 @@ public class LoginService {
                 return Reslut.error("用户不存在");
             }
             if (student.getPassword().equals(MD5Encryptor.encryptToMD5(loginDto.getPassword()))){
+                userVo.setUsername(student.getStuName());
                 userVo.setRole(student.getRole());
                 userVo.setUserId(student.getStuId());
                 return Reslut.succeed(userVo);
@@ -49,6 +50,7 @@ public class LoginService {
                 return Reslut.error("用户不存在");
             }
             if (insrtructor.getPassword().equals(MD5Encryptor.encryptToMD5(loginDto.getPassword()))){
+                userVo.setUsername(insrtructor.getInstName());
                 userVo.setUserId(insrtructor.getInstId());
                 userVo.setRole(insrtructor.getRole());
                 return Reslut.succeed(userVo);
@@ -61,9 +63,10 @@ public class LoginService {
                 return Reslut.error("用户不存在");
             }
             if (user.getPassword().equals(MD5Encryptor.encryptToMD5(loginDto.getPassword()))){
+                userVo.setUsername(user.getFullname());
                 userVo.setUserId(user.getUserId());
                 userVo.setRole(user.getRole());
-                return Reslut.succeed();
+                return Reslut.succeed(userVo);
             }
             return Reslut.error("密码错误");
         }

@@ -80,7 +80,7 @@ public class RegisterService {
         user.setUserId(String.valueOf(l));
         user.setRole(registerDto.getRole());
         user.setPassword(MD5Encryptor.encryptToMD5(registerDto.getPassword()));
-        user.setEmail(MD5Encryptor.encryptToMD5(registerDto.getUsername()));
+        user.setEmail(registerDto.getUsername());
         int i = userMapper.addUser(user);
         if (i == 1){
             return Reslut.succeed();
