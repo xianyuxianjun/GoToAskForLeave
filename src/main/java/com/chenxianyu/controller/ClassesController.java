@@ -52,4 +52,8 @@ public class ClassesController {
         return classesService.getAllClasses();
     }
 
+    @PostMapping("/updateClassesAdmin")
+    public Reslut updateClassesAdmin(@RequestBody Classes classes){
+        return classesService.updateClassesAdmin(classes);
+    }
 }

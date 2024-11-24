@@ -1,6 +1,7 @@
 package com.chenxianyu.service;
 import com.chenxianyu.mapper.ClassesMapper;
 import com.chenxianyu.mapper.DepMapper;
+import com.chenxianyu.mapper.InsrtructorMapper;
 import com.chenxianyu.mapper.StudentMapper;
 import com.chenxianyu.model.enity.Classes;
 import com.chenxianyu.model.enity.Insrtructor;
@@ -24,6 +25,8 @@ public class ClassesService {
     private DepMapper depMapper;
     @Autowired
     private StudentMapper studentMapper;
+    @Autowired
+    private InsrtructorMapper insrtructorMapper;
     public Reslut addClasses(Classes classes) {
         int i = classesMapper.addClass(classes);
         if (i == 0){
@@ -35,12 +38,11 @@ public class ClassesService {
     public Reslut getClassByInstId(Insrtructor insrtructor) {
         List<Classes> classesList = classesMapper.selectClassByInstId(insrtructor);
         List<ClassesVo> classesVos = new ArrayList<>();
-        List<Student> studentList = new ArrayList<>();
         int i = 0;
         for (Classes classes : classesList) {
             List<Student> students = studentMapper.selectStudentByClassId(classes.getClassId());
             ClassesVo vo = new ClassesVo();
-            i = i+students.size();
+            i = students.size();
             try {
                 ObjectCopier.copyProperties(classes,vo);
             } catch (IllegalAccessException e) {
@@ -48,8 +50,10 @@ public class ClassesService {
             } catch (InvocationTargetException e) {
                 throw new RuntimeException(e);
             }
+            Insrtructor insrtructor1 = insrtructorMapper.selectInstByInstId(classes.getInstId());
             vo.setNum(String.valueOf(i));
             vo.setDepName(depMapper.selectDepById(classes.getDepId()).getDepName());
+            vo.setInstName(insrtructor1.getInstName());
             classesVos.add(vo);
         }
         return Reslut.succeed(classesVos);
@@ -83,11 +87,22 @@ public class ClassesService {
             } catch (InvocationTargetException e) {
                 throw new RuntimeException(e);
             }
+
             classesVo.setDepName(depMapper.selectDepById(classes.getDepId()).getDepName());
             List<Student> studentList = studentMapper.selectStudentByClassId(classes.getClassId());
+            Insrtructor insrtructor = insrtructorMapper.selectInstByInstId(classes.getInstId());
+            classesVo.setInstName(insrtructor.getInstName());
             classesVo.setNum(String.valueOf(studentList.size()));
             classesVos.add(classesVo);
         }
         return Reslut.succeed(classesVos);
+    }
+
+    public Reslut updateClassesAdmin(Classes classes) {
+        int i = classesMapper.updateClassesAdmin(classes);
+        if (i>0){
+            return Reslut.succeed();
+        }
+        return Reslut.error("修改失败");
     }
 }

@@ -29,4 +29,7 @@ public interface ClassesMapper {
 
     @Select("select * from sys_classes")
     List<Classes> selectAllClasses();
+
+    @Update("update sys_classes set class_name=#{className}, dep_id=#{depId}, major=#{major}, grade=#{grade},inst_id=#{instId} where class_id=#{classId}")
+    int updateClassesAdmin(Classes classes);
 }

@@ -56,4 +56,9 @@ public class InstController {
     public Reslut updateInst(@RequestBody Insrtructor insrtructor){
         return instService.updateInst(insrtructor);
     }
+
+    @PostMapping("/getInstItem")
+    public Reslut getInstItem(){
+        return instService.getInstItem();
+    }
 }

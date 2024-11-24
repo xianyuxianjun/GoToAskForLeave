@@ -2,10 +2,7 @@ package com.chenxianyu.service;
 
 import com.chenxianyu.mapper.*;
 import com.chenxianyu.model.enity.*;
-import com.chenxianyu.model.vo.ClassVo;
-import com.chenxianyu.model.vo.LeaveVo;
-import com.chenxianyu.model.vo.Reslut;
-import com.chenxianyu.model.vo.StudentVo;
+import com.chenxianyu.model.vo.*;
 import com.chenxianyu.utils.MD5Encryptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -164,5 +161,17 @@ public class InstService {
             return Reslut.succeed();
         }
         return Reslut.error("修改失败");
+    }
+
+    public Reslut getInstItem() {
+        List<Insrtructor> insrtructors = insrtructorMapper.selectAllInst();
+        List<ItemVo> itemVos = new ArrayList<>();
+        for (Insrtructor insrtructor : insrtructors) {
+            ItemVo itemVo = new ItemVo();
+            itemVo.setTitle(insrtructor.getInstName());
+            itemVo.setValue(insrtructor.getInstId());
+            itemVos.add(itemVo);
+        }
+        return Reslut.succeed(itemVos);
     }
 }

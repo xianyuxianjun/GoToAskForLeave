@@ -7,6 +7,7 @@ public class ClassesVo {
     private String classId;
     private String className;
     private String instId;
+    private String instName;
     private String depId;
     private String depName;
     private String major;
