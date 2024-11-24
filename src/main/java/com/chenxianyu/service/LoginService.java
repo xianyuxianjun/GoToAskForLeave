@@ -32,7 +32,7 @@ public class LoginService {
         }
         UserVo userVo = new UserVo();
         if (loginDto.getRole().equals("学生")){
-            Student student = studentMapper.selectStudentByEmail(loginDto);
+            Student student = studentMapper.selectStudentByEmail(loginDto.getUsername());
             if (student == null){
                 return Reslut.error("用户不存在");
             }
@@ -45,7 +45,7 @@ public class LoginService {
              return Reslut.error("密码错误");
         }
         if (loginDto.getRole().equals("辅导员")){
-            Insrtructor insrtructor = insrtructorMapper.selectInstByEamil(loginDto);
+            Insrtructor insrtructor = insrtructorMapper.selectInstByEamil(loginDto.getUsername());
             if (insrtructor == null){
                 return Reslut.error("用户不存在");
             }
@@ -58,7 +58,7 @@ public class LoginService {
             return Reslut.error("密码错误");
         }
         if (loginDto.getRole().equals("管理员")){
-            User user = userMapper.selectUserByEmail(loginDto);
+            User user = userMapper.selectUserByEmail(loginDto.getUsername());
             if (user == null){
                 return Reslut.error("用户不存在");
             }

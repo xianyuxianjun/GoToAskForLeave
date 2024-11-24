@@ -142,6 +142,10 @@ public class InstService {
     }
 
     public Reslut addInst(Insrtructor insrtructor) {
+        Insrtructor insrtructor1 = insrtructorMapper.selectInstByEamil(insrtructor.getEmail());
+        if (insrtructor1 != null){
+            return Reslut.error("用户已存在");
+        }
         Random random = new Random();
         long l = random.nextLong();
         insrtructor.setRole("辅导员");
@@ -152,5 +156,13 @@ public class InstService {
             return Reslut.succeed();
         }
         return Reslut.error("添加失败");
+    }
+
+    public Reslut updateInst(Insrtructor insrtructor) {
+        int i = insrtructorMapper.updateInst(insrtructor);
+        if (i>0){
+            return Reslut.succeed();
+        }
+        return Reslut.error("修改失败");
     }
 }

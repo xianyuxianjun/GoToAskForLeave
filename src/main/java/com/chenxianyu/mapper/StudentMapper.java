@@ -33,7 +33,7 @@ public interface StudentMapper {
     List<Student> selectStudentByClassId(String classId);
 
     @Select("select * from sys_student where email = #{username}")
-    Student selectStudentByEmail(LoginDto loginDto);
+    Student selectStudentByEmail(String userName);
 
     @Insert("insert into sys_student (stu_id,sex,password, role, email,stu_name) values (#{stuId},#{sex},#{password},#{role},#{email},#{stuName})")
     int insterStudent(Student student);

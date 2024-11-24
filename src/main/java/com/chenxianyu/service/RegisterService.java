@@ -28,12 +28,24 @@ public class RegisterService {
             return Reslut.error("注册失败");
         }
         if (registerDto.getRole().equals("学生")){
+            Student student = studentMapper.selectStudentByEmail(registerDto.getUsername());
+            if (student != null){
+                return Reslut.error("用户已存在");
+            }
             return studentRegister(registerDto);
         }
         if (registerDto.getRole().equals("辅导员")){
+            Insrtructor insrtructor = insrtructorMapper.selectInstByEamil(registerDto.getUsername());
+            if (insrtructor != null){
+                return Reslut.error("用户已存在");
+            }
             return instRegister(registerDto);
         }
         if (registerDto.getRole().equals("管理员")){
+            User user = userMapper.selectUserByEmail(registerDto.getUsername());
+            if (user != null){
+                return Reslut.error("用户已存在");
+            }
             return userRegister(registerDto);
         }
         return Reslut.error("注册失败");

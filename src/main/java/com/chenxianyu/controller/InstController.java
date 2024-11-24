@@ -51,4 +51,9 @@ public class InstController {
     public Reslut addInst(@RequestBody Insrtructor insrtructor){
         return instService.addInst(insrtructor);
     }
+
+    @PostMapping("/updateInst")
+    public Reslut updateInst(@RequestBody Insrtructor insrtructor){
+        return instService.updateInst(insrtructor);
+    }
 }

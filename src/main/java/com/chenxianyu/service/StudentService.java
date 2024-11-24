@@ -29,6 +29,10 @@ public class StudentService {
     }
 
     public Reslut addStudent(Student student) {
+        Student student1 = studentMapper.selectStudentByEmail(student.getEmail());
+        if (student1 != null){
+            return Reslut.error("用户已存在");
+        }
         Random random = new Random();
         long l = random.nextLong();
         student.setStuId(String.valueOf(l));

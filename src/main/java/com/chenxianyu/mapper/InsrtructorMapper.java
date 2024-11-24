@@ -2,10 +2,7 @@ package com.chenxianyu.mapper;
 
 import com.chenxianyu.model.dto.LoginDto;
 import com.chenxianyu.model.enity.Insrtructor;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -24,5 +21,8 @@ public interface InsrtructorMapper {
     int addInst(Insrtructor insrtructor);
 
     @Select("select * from sys_instructor where email = #{username}")
-    Insrtructor selectInstByEamil(LoginDto loginDto);
+    Insrtructor selectInstByEamil(String username);
+
+    @Update("update sys_instructor set inst_name=#{instName}, dep_id=#{depId},telephone=#{telephone},email=#{email} where inst_id=#{instId} ")
+    int updateInst(Insrtructor insrtructor);
 }

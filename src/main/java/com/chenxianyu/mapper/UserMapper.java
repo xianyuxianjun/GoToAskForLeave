@@ -24,5 +24,5 @@ public interface UserMapper {
     void delectUserById(String id);
 
     @Select("select * from sys_user where emali=#{username}")
-    User selectUserByEmail(LoginDto loginDto);
+    User selectUserByEmail(String username);
 }
