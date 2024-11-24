@@ -5,6 +5,7 @@ import com.chenxianyu.mapper.StudentMapper;
 import com.chenxianyu.model.enity.Classes;
 import com.chenxianyu.model.enity.Insrtructor;
 import com.chenxianyu.model.enity.Student;
+import com.chenxianyu.model.vo.ClassVo;
 import com.chenxianyu.model.vo.ClassesVo;
 import com.chenxianyu.model.vo.Reslut;
 import com.chenxianyu.utils.ObjectCopier;
@@ -68,5 +69,25 @@ public class ClassesService {
             return Reslut.succeed();
         }
         return Reslut.error("删除失败");
+    }
+
+    public Reslut getAllClasses() {
+        List<Classes> classesList = classesMapper.selectAllClasses();
+        List<ClassesVo> classesVos = new ArrayList<>();
+        for (Classes classes : classesList) {
+            ClassesVo classesVo = new ClassesVo();
+            try {
+                ObjectCopier.copyProperties(classes,classesVo);
+            } catch (IllegalAccessException e) {
+                throw new RuntimeException(e);
+            } catch (InvocationTargetException e) {
+                throw new RuntimeException(e);
+            }
+            classesVo.setDepName(depMapper.selectDepById(classes.getDepId()).getDepName());
+            List<Student> studentList = studentMapper.selectStudentByClassId(classes.getClassId());
+            classesVo.setNum(String.valueOf(studentList.size()));
+            classesVos.add(classesVo);
+        }
+        return Reslut.succeed(classesVos);
     }
 }

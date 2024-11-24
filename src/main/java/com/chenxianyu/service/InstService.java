@@ -152,7 +152,7 @@ public class InstService {
         insrtructor.setInstId(String.valueOf(l));
         insrtructor.setPassword(MD5Encryptor.encryptToMD5("123456"));
         int i = insrtructorMapper.addInst(insrtructor);
-        if (i>1){
+        if (i>0){
             return Reslut.succeed();
         }
         return Reslut.error("添加失败");

@@ -26,4 +26,7 @@ public interface ClassesMapper {
 
     @Update("update sys_classes set class_name=#{className}, dep_id=#{depId}, major=#{major}, grade=#{grade} where class_id=#{classId}")
     int updateClasses(Classes classes);
+
+    @Select("select * from sys_classes")
+    List<Classes> selectAllClasses();
 }

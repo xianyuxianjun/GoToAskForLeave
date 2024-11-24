@@ -47,4 +47,9 @@ public class ClassesController {
         return classesService.delectClasses(classes);
     }
 
+    @PostMapping("/getAllClasses")
+    public Reslut getAllClasses(){
+        return classesService.getAllClasses();
+    }
+
 }
