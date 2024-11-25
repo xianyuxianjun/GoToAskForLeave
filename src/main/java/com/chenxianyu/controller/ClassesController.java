@@ -31,6 +31,7 @@ public class ClassesController {
         classes.setClassId(String.valueOf(l));
         return classesService.addClasses(classes);
     }
+    //1233
 
     @PostMapping("/getClassByInstId")
     public Reslut getClassByInstId(@RequestBody Insrtructor insrtructor){
