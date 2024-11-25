@@ -62,6 +62,7 @@ public class ClassesController {
 
     @PostMapping("/updateClassesAdmin")
     public Reslut updateClassesAdmin(@RequestBody Classes classes){
+        // 调用服务层的方法，更新课程信息并返回结果
         return classesService.updateClassesAdmin(classes);
     }
 
