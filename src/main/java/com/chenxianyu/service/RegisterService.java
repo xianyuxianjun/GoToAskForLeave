@@ -54,6 +54,9 @@ public class RegisterService {
     public Reslut studentRegister(RegisterDto registerDto){
         Random random = new Random();
         long l = random.nextInt();
+        if (l<0){
+            l = -l;
+        }
         Student student = new Student();
         student.setStuId("S"+ l);
         student.setEmail(registerDto.getUsername());
@@ -71,6 +74,9 @@ public class RegisterService {
     public Reslut instRegister(RegisterDto registerDto){
         Random random = new Random();
         long l = random.nextInt();
+        if (l<0){
+            l = -l;
+        }
         Insrtructor insrtructor = new Insrtructor();
         insrtructor.setInstId("I"+l);
         insrtructor.setInstName(registerDto.getFullName());
@@ -87,6 +93,9 @@ public class RegisterService {
     public Reslut userRegister(RegisterDto registerDto){
         Random random = new Random();
         long l = random.nextInt();
+        if (l<0){
+            l = -l;
+        }
         User user = new User();
         user.setFullname(registerDto.getFullName());
         user.setUserId("A"+l);

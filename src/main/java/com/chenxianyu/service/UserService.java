@@ -34,6 +34,9 @@ public class UserService {
         }
         Random random = new Random();
         long l = random.nextInt();
+        if (l<0){
+            l = -l;
+        }
         user.setRole("管理员");
         user.setPassword(MD5Encryptor.encryptToMD5("123456"));
         user.setUserId("A"+l);

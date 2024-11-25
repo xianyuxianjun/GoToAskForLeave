@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Service
 public class ClassesService {
@@ -29,6 +30,12 @@ public class ClassesService {
     @Autowired
     private InsrtructorMapper insrtructorMapper;
     public Reslut addClasses(Classes classes) {
+        Random random = new Random();
+        int i1 = random.nextInt();
+        if (i1<0){
+            i1 = -i1;
+        }
+        classes.setClassId("C"+i1);
         int i = classesMapper.addClass(classes);
         if (i == 0){
             return Reslut.error("添加失败");

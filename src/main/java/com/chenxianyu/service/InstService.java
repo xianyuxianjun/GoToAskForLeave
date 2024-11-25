@@ -145,6 +145,9 @@ public class InstService {
         }
         Random random = new Random();
         long l = random.nextInt();
+        if (l<0){
+            l = -l;
+        }
         insrtructor.setRole("辅导员");
         insrtructor.setInstId("I"+l);
         insrtructor.setPassword(MD5Encryptor.encryptToMD5("123456"));

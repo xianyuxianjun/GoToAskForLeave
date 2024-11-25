@@ -34,8 +34,11 @@ public class CourseService {
 
     public  Reslut addCourse(Course course) {
         Random random = new Random();
-        long l = random.nextLong();
-        course.setCourseId(String.valueOf(l));
+        long l = random.nextInt();
+        if (l<0){
+            l = -l;
+        }
+        course.setCourseId("E"+l);
         int i = courseMapper.addCourse(course);
         if (i==1){
             return Reslut.succeed();

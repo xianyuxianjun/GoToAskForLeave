@@ -35,6 +35,9 @@ public class StudentService {
         }
         Random random = new Random();
         long l = random.nextInt();
+        if (l<0){
+            l = -l;
+        }
         student.setStuId("S"+l);
         student.setPassword(MD5Encryptor.encryptToMD5("123456"));
         int i = studentMapper.addStudent(student);
