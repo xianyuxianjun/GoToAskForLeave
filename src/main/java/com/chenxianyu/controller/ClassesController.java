@@ -55,6 +55,7 @@ public class ClassesController {
     // 调用服务层的方法，根据课程对象删除课程信息并返回结果
 
     @PostMapping("/getAllClasses")
+    // 调用服务层的方法，获取所有课程信息并返回结果
     public Reslut getAllClasses(){
         return classesService.getAllClasses();
     }
