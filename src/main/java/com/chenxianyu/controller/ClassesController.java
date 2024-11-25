@@ -43,6 +43,7 @@ public class ClassesController {
     }
 
     @PostMapping("/updateClasses")
+    // 调用服务层的方法，根据课程对象更新课程信息并返回结果
     public Reslut updateClasses(@RequestBody Classes classes){
         return classesService.updateClasses(classes);
     }
