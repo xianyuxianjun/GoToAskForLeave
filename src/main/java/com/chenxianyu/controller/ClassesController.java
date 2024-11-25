@@ -49,6 +49,7 @@ public class ClassesController {
     }
 
     @PostMapping("/delectClasses")
+    // 调用服务层的方法，根据课程对象删除课程信息并返回结果
     public Reslut delectClasses(@RequestBody Classes classes){
         return classesService.delectClasses(classes);
     }
