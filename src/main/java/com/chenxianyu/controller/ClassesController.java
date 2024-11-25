@@ -38,6 +38,7 @@ public class ClassesController {
 
     @PostMapping("/getClassByInstId")
     public Reslut getClassByInstId(@RequestBody Insrtructor insrtructor){
+        // 调用服务层的方法，根据讲师 ID 查询所教授的课程并返回结果
         return classesService.getClassByInstId(insrtructor);
     }
 
