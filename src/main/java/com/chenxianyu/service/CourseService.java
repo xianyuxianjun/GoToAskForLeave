@@ -89,4 +89,23 @@ public class CourseService {
         }
         return Reslut.succeed(myCourseVos);
     }
+
+    public Reslut getAllCourse() {
+        List<Course> courseList = courseMapper.selectAllCourse();
+        List<CourseVo> courseVos = new ArrayList<>();
+        for (Course course : courseList) {
+            CourseVo courseVo = new CourseVo();
+            try {
+                ObjectCopier.copyProperties(course,courseVo);
+            } catch (IllegalAccessException e) {
+                throw new RuntimeException(e);
+            } catch (InvocationTargetException e) {
+                throw new RuntimeException(e);
+            }
+            Classes classes = classesMapper.selectClassByClassId(course.getClassId());
+            courseVo.setClassName(classes.getClassName());
+            courseVos.add(courseVo);
+        }
+        return Reslut.succeed(courseVos);
+    }
 }

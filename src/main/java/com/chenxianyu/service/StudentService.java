@@ -34,8 +34,8 @@ public class StudentService {
             return Reslut.error("用户已存在");
         }
         Random random = new Random();
-        long l = random.nextLong();
-        student.setStuId(String.valueOf(l));
+        long l = random.nextInt();
+        student.setStuId("S"+l);
         student.setPassword(MD5Encryptor.encryptToMD5("123456"));
         int i = studentMapper.addStudent(student);
         if (i>0){

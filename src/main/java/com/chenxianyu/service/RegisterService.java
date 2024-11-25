@@ -53,9 +53,9 @@ public class RegisterService {
 
     public Reslut studentRegister(RegisterDto registerDto){
         Random random = new Random();
-        long l = random.nextLong();
+        long l = random.nextInt();
         Student student = new Student();
-        student.setStuId(String.valueOf(l));
+        student.setStuId("S"+ l);
         student.setEmail(registerDto.getUsername());
         student.setPassword(MD5Encryptor.encryptToMD5(registerDto.getPassword()));
         student.setRole(registerDto.getRole());
@@ -70,9 +70,9 @@ public class RegisterService {
 
     public Reslut instRegister(RegisterDto registerDto){
         Random random = new Random();
-        long l = random.nextLong();
+        long l = random.nextInt();
         Insrtructor insrtructor = new Insrtructor();
-        insrtructor.setInstId(String.valueOf(l));
+        insrtructor.setInstId("I"+l);
         insrtructor.setInstName(registerDto.getFullName());
         insrtructor.setPassword(MD5Encryptor.encryptToMD5(registerDto.getPassword()));
         insrtructor.setRole(registerDto.getRole());
@@ -86,10 +86,10 @@ public class RegisterService {
 
     public Reslut userRegister(RegisterDto registerDto){
         Random random = new Random();
-        long l = random.nextLong();
+        long l = random.nextInt();
         User user = new User();
         user.setFullname(registerDto.getFullName());
-        user.setUserId(String.valueOf(l));
+        user.setUserId("A"+l);
         user.setRole(registerDto.getRole());
         user.setPassword(MD5Encryptor.encryptToMD5(registerDto.getPassword()));
         user.setEmail(registerDto.getUsername());

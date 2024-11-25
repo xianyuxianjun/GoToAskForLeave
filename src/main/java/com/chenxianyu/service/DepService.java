@@ -33,4 +33,39 @@ public class DepService {
         return depVo;
     }
 
+    public Reslut delectDep(Department department) {
+        int i = depMapper.delectDepById(department.getDepId());
+        if (i>0){
+            return Reslut.succeed();
+        }
+        return Reslut.error("删除失败");
+    }
+
+    public Reslut addDep(Department department) {
+        Department department1 = depMapper.selectDepById(department.getDepId());
+        if (department1 != null){
+            return Reslut.error("编号已存在");
+        }
+        int i = depMapper.addDep(department);
+        if (i>0){
+            return Reslut.succeed();
+        }
+        return Reslut.error("添加失败");
+    }
+
+    public Reslut updateDep(Department department) {
+        Department department1 = depMapper.selectDepById(department.getDepId());
+        if (department1 != null){
+            return Reslut.error("编号已存在");
+        }
+        int i = depMapper.updateDep(department);
+        if (i>0){
+            return Reslut.succeed();
+        }
+        return Reslut.error("修改失败");
+    }
+
+    public Reslut getAdminAllDep() {
+        return Reslut.succeed(depMapper.selectAllDep());
+    }
 }

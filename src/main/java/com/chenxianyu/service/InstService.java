@@ -144,9 +144,9 @@ public class InstService {
             return Reslut.error("用户已存在");
         }
         Random random = new Random();
-        long l = random.nextLong();
+        long l = random.nextInt();
         insrtructor.setRole("辅导员");
-        insrtructor.setInstId(String.valueOf(l));
+        insrtructor.setInstId("I"+l);
         insrtructor.setPassword(MD5Encryptor.encryptToMD5("123456"));
         int i = insrtructorMapper.addInst(insrtructor);
         if (i>0){

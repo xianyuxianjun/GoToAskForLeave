@@ -8,6 +8,7 @@ import com.chenxianyu.model.enity.Insrtructor;
 import com.chenxianyu.model.enity.Student;
 import com.chenxianyu.model.vo.ClassVo;
 import com.chenxianyu.model.vo.ClassesVo;
+import com.chenxianyu.model.vo.ItemVo;
 import com.chenxianyu.model.vo.Reslut;
 import com.chenxianyu.utils.ObjectCopier;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -104,5 +105,17 @@ public class ClassesService {
             return Reslut.succeed();
         }
         return Reslut.error("修改失败");
+    }
+
+    public Reslut getAllClassItem() {
+        List<Classes> classesList = classesMapper.selectAllClasses();
+        List<ItemVo> itemVos = new ArrayList<>();
+        for (Classes classes : classesList) {
+            ItemVo itemVo = new ItemVo();
+            itemVo.setTitle(classes.getClassName());
+            itemVo.setValue(classes.getClassId());
+            itemVos.add(itemVo);
+        }
+        return Reslut.succeed(itemVos);
     }
 }

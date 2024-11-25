@@ -41,4 +41,9 @@ public class CourseController {
     public Reslut getCourse(@RequestBody Student student){
         return courseService.getCourse(student);
     }
+
+    @PostMapping("/getAllCourse")
+    public Reslut getAllCourse(){
+        return courseService.getAllCourse();
+    }
 }

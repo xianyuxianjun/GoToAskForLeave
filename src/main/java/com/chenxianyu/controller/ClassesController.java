@@ -56,4 +56,9 @@ public class ClassesController {
     public Reslut updateClassesAdmin(@RequestBody Classes classes){
         return classesService.updateClassesAdmin(classes);
     }
+
+    @PostMapping("/getAllClassItem")
+    public Reslut getAllClassItem(){
+        return classesService.getAllClassItem();
+    }
 }
