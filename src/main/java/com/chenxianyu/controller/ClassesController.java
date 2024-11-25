@@ -26,9 +26,12 @@ public class ClassesController {
     @PostMapping("/addClasses")
 
     public Reslut addClasses(@RequestBody Classes classes) {
+        // 创建一个随机数生成器
         Random random = new Random();
+        // 生成一个长整型随机数并将其转换为字符串，作为课程 ID
         long l = random.nextLong();
         classes.setClassId(String.valueOf(l));
+        // 调用服务层的方法，添加课程并返回结果
         return classesService.addClasses(classes);
     }
     //1233
