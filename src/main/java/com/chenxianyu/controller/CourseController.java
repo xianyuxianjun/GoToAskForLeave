@@ -18,12 +18,14 @@ public class CourseController {
     private CourseService courseService;
 
     @PostMapping("/addCourse")
+    // 调用服务层的方法，添加新课程并返回结果
     public Reslut addCourse(@RequestBody Course course){
         return courseService.addCourse(course);
     }
 
     @PostMapping("/getCourseList")
     public Reslut getCourseList(@RequestBody Insrtructor insrtructor) throws InvocationTargetException, IllegalAccessException {
+    // 调用服务层的方法，获取课程列表，并返回结果
         return courseService.getCourseList(insrtructor);
     }
 
